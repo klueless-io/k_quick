@@ -40,8 +40,7 @@ module KQuick
         prompt = TTY::Prompt.new
 
         choices = [
-          'cmdlet_run'
-          # { name: :gui, disabled: '(:gui disabled, you are already on this menu)' }
+          { value: 'cmdlet_run', name: 'Cmdlet Run' }
         ]
 
         begin
