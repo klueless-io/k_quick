@@ -57,4 +57,7 @@ Gem::Specification.new do |spec|
   # spec.add_dependency 'tty-which',       '~> 0.4'
   # spec.add_dependency 'equatable',       '~> 0.5'
   spec.add_dependency 'pastel',          '~> 0.7.2'
+  spec.add_dependency 'sample_cmdlet_patterns'
+  # gem 'sample_cmdlet_patterns', path: '../sample_cmdlet_patterns'
+
 end
