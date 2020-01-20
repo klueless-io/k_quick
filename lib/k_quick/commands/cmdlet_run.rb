@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../command'
+require_relative '../exit_app'
 
 require 'tty-config'
 require 'tty-prompt'
@@ -11,8 +12,7 @@ module KQuick
     class CmdletRun < KQuick::Command
       def initialize(subcommand, options)
         @subcommand = (subcommand || '').to_sym
-
-        @options = options
+        super(options)
       end
 
       # Execute CmdletRun command taking input from a input stream
@@ -40,15 +40,23 @@ module KQuick
         prompt = TTY::Prompt.new
 
         choices = [
-          'sample_cmdlet_patterns',
-          'q'
-          # { name: :gui, disabled: '(:gui disabled, you are already on this menu)' }
+          { value: 'sample_cmdlet_patterns', name: 'Sample Cmdlet Patterns' }
         ]
 
-        subcommand = prompt.select('Select your subcommand?', choices, per_page: 15, filter: true, cycle: true)
+        begin
+          prompt.on(:keyctrl_x, :keyescape) do
+            raise ExitApp
+          end
 
-        command = KQuick::Commands::CmdletRun.new(subcommand, {})
-        command.execute(input: @input, output: @output)
+          subcommand = prompt.select('Select your subcommand (ESC to Exit)?', choices, per_page: 15, filter: true, cycle: true)
+
+          command = KQuick::Commands::CmdletRun.new(subcommand, {})
+          command.execute(input: @input, output: @output)
+        rescue KQuick::ExitApp
+          puts
+          prompt.warn 'go up one menu....'
+          @subcommand = nil
+        end
       end
     end
   end
