@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 require_relative 'app'
+
 require 'forwardable'
+require 'pastel'
 
 module KQuick
   # Base command class
@@ -9,6 +11,12 @@ module KQuick
     extend Forwardable
 
     def_delegators :command, :run
+
+    def initialize(options)
+      @options = options
+      @pastel = Pastel.new
+      config
+    end
 
     # Commandlet Configuration
     def config
