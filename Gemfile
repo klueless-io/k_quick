@@ -6,7 +6,7 @@ source 'https://rubygems.org'
 gemspec
 
 # gem 'sample_cmdlet_patterns', github: 'klueless-io/sample_cmdlet_patterns', branch: 'master'
-gem 'sample_cmdlet_patterns', path: '/Users/davidcruwys/dev/cmdlets/sample_cmdlet_patterns' # path: '../sample_cmdlet_patterns'
+# gem 'sample_cmdlet_patterns', path: '/Users/davidcruwys/dev/cmdlets/sample_cmdlet_patterns' # path: '../sample_cmdlet_patterns'
 
 group :development, :test do
   gem 'guard-rspec'

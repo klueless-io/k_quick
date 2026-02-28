@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../command'
-require 'sample_cmdlet_patterns'
+# require 'sample_cmdlet_patterns'
 # require 'sample_cmdlet_patterns/commands/toc'
 
 require 'tty-config'
